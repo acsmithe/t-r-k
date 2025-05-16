@@ -1,0 +1,31 @@
+.active {
+    color: gold !important;
+    border-bottom: 3px solid #4c71b9; 
+}
+.not-active {
+    transition: color 0.3s ease , border-bottom 0.3s ease;
+}
+.not-active:hover {
+    color: #4c71b9 !important;
+    border-bottom: 3px solid #4c71b9; 
+}
+.hero-section {
+    background: url(img/lab.png) center center/cover no-repeat;
+    position: relative;
+    min-height: 80vh;
+}
+.hero-section h1 {
+    text-shadow: 0 2px 8px #000;
+}
+.hero-overlay {
+    background: rgba(30, 50, 80, 0.45);
+    z-index: 1;
+}
+.btn{
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: border-radius 0.3s ease;
+}
+.btn:hover{
+    border-radius: 10px;
+}
