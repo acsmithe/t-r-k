@@ -41,19 +41,21 @@ body {
     border-radius: 10px;
 }
 
-.up {
-    transition: transform 0.3s ease;
-}
-
-.up:hover {
-    transform: translateY(-5px);
-}
 
 #masodik {
     background-color: #f5f7fa;
     width: 100%;
 }
 
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.transition {
+  transition: all 0.3s ease-in-out;
+}
 
 
 
