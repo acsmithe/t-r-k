@@ -28,8 +28,11 @@ body {
 
 .hero-overlay {
     background: rgba(30, 50, 80, 0.45);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 1;
 }
+
 
 .btn {
     border-top-left-radius: 0;
