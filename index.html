@@ -140,59 +140,90 @@
 
     <section class="container my-5">
         <h1 class="text-center fw-bold display-5 text-warning mb-5">Inspirációnk</h1>
-        <div class="row g-4">
+        <div class="row g-4 align-items-stretch">
 
-            <div class="col-xl-6 col-12">
-                <div class="card mb-3 shadow-lg border-0 rounded-4 hover-shadow transition h-100">
+            <!-- Póda László kártya -->
+            <div class="col-lg-6 col-12">
+                <div class="card h-100 mb-3 shadow-lg border-0 rounded-4 hover-shadow transition">
                     <div class="row g-0 h-100">
-                        <div class="col-md-4 h-100">
-                            <img src="img/poda(1).png" class="img-fluid h-100 w-100 rounded-start object-fit-cover"
+                        <div class="col-5 h-100">
+                            <img src="img/poda(1).png" class="img-fluid w-100 h-100 rounded-start object-fit-cover"
                                 alt="Póda László">
                         </div>
-                        <div class="col-md-8 h-100">
-                            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center h-100 w-100 text-center">
-                                <h5 class="card-title text-start fw-bold text-dark mb-3">Póda László</h5>
-                                <p class="card-text text-start text-secondary">
-                                    73 éves legendás fizikatanár. Nigériában született, magyar szülőktől, fehér bőrrel –
-                                    már ez is sztori. Zseni volt, Amerikában végzett fizikát, és a fotonok meg a Casio
-                                    számológépek megszállottja lett.
-                                </p>
-                                <p class="card-text text-start text-secondary">
-                                    Társalapítója lett a General Electricnek, ma Kanadában él. A „Photons” név tőle jött
-                                    – nála jobban senki se ért a fényhez.
-                                </p>
+                        <div class="col-7 h-100">
+                            <div class="card-body p-4 d-flex flex-column justify-content-center h-100">
+                                <h5 class="card-title fw-bold text-dark mb-3">Póda László</h5>
+
+                                <!-- hosszú szöveg (sm-től felfelé) -->
+                                <div class="d-none d-sm-block">
+                                    <p class="card-text text-secondary">
+                                        73 éves legendás fizikatanár. Nigériában született, magyar szülőktől, fehér
+                                        bőrrel – már ez is sztori.
+                                        Zseni volt, Amerikában végzett fizikát, és a fotonok meg a Casio számológépek
+                                        megszállottja lett.
+                                    </p>
+                                    <p class="card-text text-secondary">
+                                        Társalapítója lett a General Electricnek, ma Kanadában él. A „Photons” név tőle
+                                        jött – nála jobban senki se ért a fényhez.
+                                    </p>
+                                </div>
+
+                                <!-- rövid szöveg (csak mobilon) -->
+                                <div class="d-block d-sm-none">
+                                    <p class="card-text text-secondary">
+                                        73 éves fizika zseni. GE-t alapított, a „Photons” név tőle jött.
+                                    </p>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-            <div class="col-xl-6 col-12">
-                <div class="card mb-3 shadow-lg border-0 rounded-4 hover-shadow transition h-100">
-                    <div class="row g-0 h-100">
-                        <div class="col-md-8 order-sm-2 order-md-1 h-100">
-                            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center h-100 w-100 text-center">
-                                <h5 class="card-title text-end fw-bold text-dark mb-3">Takáts Csongor</h5>
-                                <p class="card-text text-end text-secondary">
-                                    Isztambulban született török történész. Oxfordon végzett, brutálisan jó
-                                    szakirodalmakat írt a török hagyományokról és történelemről.
-                                </p>
-                                <p class="card-text text-end text-secondary">
-                                    Jelenleg Japánban kutat egy zsidó és afroamerikai kollégájával. A „Turkish” név tőle
-                                    jött – a kultúrához, identitáshoz ő adta az ízt.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 order-sm-1 order-md-2 h-100">
-                            <img src="img/török.jpg" class="img-fluid h-100 w-100 rounded-end object-fit-cover"
+            <!-- Takáts Csongor kártya -->
+            <div class="col-lg-6 col-12">
+                <div class="card h-100 mb-3 shadow-lg border-0 rounded-4 hover-shadow transition">
+                    <div class="row g-0 h-100 flex-row-reverse">
+                        <div class="col-5 h-100">
+                            <img src="img/török.jpg" class="img-fluid w-100 h-100 rounded-end object-fit-cover"
                                 alt="Takáts Csongor">
                         </div>
+                        <div class="col-7 h-100">
+                            <div class="card-body p-4 d-flex flex-column justify-content-center h-100 text-end">
+                                <h5 class="card-title fw-bold text-dark mb-3">Takáts Csongor</h5>
+
+                                <!-- hosszú szöveg (sm-től felfelé) -->
+                                <div class="d-none d-sm-block">
+                                    <p class="card-text text-secondary">
+                                        Isztambulban született török történész. Oxfordon végzett, brutálisan jó
+                                        szakirodalmakat írt a török hagyományokról és történelemről.
+                                    </p>
+                                    <p class="card-text text-secondary">
+                                        Jelenleg Japánban kutat egy zsidó és afroamerikai kollégájával. A „Turkish” név
+                                        tőle jött – a kultúrához, identitáshoz ő adta az ízt.
+                                    </p>
+                                </div>
+
+                                <!-- rövid szöveg (csak mobilon) -->
+                                <div class="d-block d-sm-none">
+                                    <p class="card-text text-secondary">
+                                        Török történész Oxfordról, most Japánban kutat. A „Turkish” név tőle jött.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
+
+
+
+
 
 
     <footer class="bg-dark text-white text-center py-5 mt-5 shadow-lg footer-gradient" id="footer">
@@ -310,6 +341,25 @@
                             <div class="carousel-item bg-secondary bg-opacity-75 p-4">
                                 <blockquote class="blockquote mb-0">
                                     <p class="fs-5 fst-italic">„Bilikék Trabant”</p>
+                                </blockquote>
+                            </div>
+                            <div class="carousel-item bg-secondary bg-opacity-75 p-4">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="fs-5 fst-italic">„És nem érti!”</p>
+                                </blockquote>
+                            </div>
+                            <div class="carousel-item bg-secondary bg-opacity-75 p-4">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="fs-5 fst-italic">
+                                        „-Matek ből segítek ha kérdeztek ... <br>
+                                        -Tanárúr mi az az 1-es ott? <br>
+                                        -Maga Idióta ! ”
+                                    </p>
+                                </blockquote>
+                            </div>
+                          <div class="carousel-item bg-secondary bg-opacity-75 p-4">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="fs-5 fst-italic">„Szabadesés kisesszé”</p>
                                 </blockquote>
                             </div>
                         </div>
