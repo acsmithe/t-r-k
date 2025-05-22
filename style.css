@@ -64,7 +64,57 @@ body {
     object-fit: cover;
 }
 
-
+.team-member {
+  min-height: 420px;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.3s;
+  box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.team-member:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 40px 0 rgba(44,62,80,0.18);
+  z-index: 5;
+}
+.team-member img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.4s;
+}
+.team-member:hover img {
+  filter: brightness(0.85) blur(1px);
+}
+.team-member .name-bar {
+  background: linear-gradient(90deg, #212529 80%, #ffc107 120%);
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  box-shadow: 0 -2px 12px #0002;
+}
+.team-member .overlay {
+  opacity: 0;
+  transition: opacity 0.4s, backdrop-filter 0.4s;
+  backdrop-filter: blur(0px);
+  background: rgba(30, 30, 40, 0.78);
+}
+.team-member:hover .overlay,
+.team-member:focus-within .overlay {
+  opacity: 1;
+  backdrop-filter: blur(2px);
+}
+.team-member .overlay > * {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.4s;
+}
+.team-member:hover .overlay > *,
+.team-member:focus-within .overlay > * {
+  transform: translateY(0);
+  opacity: 1;
+}
 
 
 .footer-gradient {
