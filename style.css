@@ -174,11 +174,17 @@ body {
 }
 
 .f_1 {
-  background-color: #e9e9e9;
+  background: linear-gradient(to bottom, #21252956 0%, #343a4056 100%);
+  color: #fff;
 }
 
 .f_2 {
-  background-color: #fdf7f2;
+ background: linear-gradient(to bottom, #343a4056 0%, #4950574b 100%);
+  color: #fff;
+}
+.f_3 {
+ background: linear-gradient(to bottom, #4950574b 0%, #6c757d00 100%);
+  color: #fff;
 }
 
 .b-1 {
@@ -191,6 +197,22 @@ body {
 
 .b-3 {
   border-left: 6px solid #28a745;
+}
+
+.b-4 {
+  border-left: 6px solid #0d6efd;
+}
+
+.b-5 {
+  border-right: 6px solid #dc3545;
+}
+
+.b-6 {
+  border-left: 6px solid #ffc107;
+}
+
+.b-7 {
+  border-right: 6px solid #0dcaf0;
 }
 
 .up {
