@@ -494,7 +494,52 @@
         </div>
     </section>
 
-
+    <!-- Elvetemült háttér részecskék -->
+    <canvas id="crazyParticles"
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;"></canvas>
+    <script>
+        const canvas = document.getElementById('crazyParticles');
+        const ctx = canvas.getContext('2d');
+        let w = window.innerWidth, h = window.innerHeight;
+        canvas.width = w; canvas.height = h;
+        window.addEventListener('resize', () => {
+            w = window.innerWidth; h = window.innerHeight;
+            canvas.width = w; canvas.height = h;
+        });
+        const colors = ['#ff00cc', '#fff700', '#00ffea', '#e30a17', '#1793d1', '#ff00cc', '#fff700'];
+        const particles = [];
+        for (let i = 0; i < 40; i++) {
+            particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: 18 + Math.random() * 22,
+                dx: (Math.random() - 0.5) * 1.2,
+                dy: (Math.random() - 0.5) * 1.2,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                a: Math.random() * Math.PI * 2
+            });
+        }
+        function drawParticles() {
+            ctx.clearRect(0, 0, w, h);
+            for (const p of particles) {
+                ctx.save();
+                ctx.globalAlpha = 0.22 + 0.18 * Math.sin(Date.now() / 700 + p.a);
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r + 6 * Math.sin(Date.now() / 400 + p.a), 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowColor = p.color;
+                ctx.shadowBlur = 32;
+                ctx.fill();
+                ctx.restore();
+                p.x += p.dx; p.y += p.dy;
+                if (p.x < 0 || p.x > w) p.dx *= -1;
+                if (p.y < 0 || p.y > h) p.dy *= -1;
+                p.a += 0.01;
+            }
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+    </script>
 
     <style>
         /* Világító, ragyogó szekció */
@@ -650,10 +695,34 @@
                 transform: translateY(0) scale(1) rotate(0deg);
             }
         }
-    </style>
 
-    <!-- A többi stílus és script változatlanul marad, hogy minden funkció működjön! -->
-    <style>
+        /* Főcímek szivárványos árnyékkal */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .display-5,
+        .display-3 {
+            text-shadow:
+                0 0 12px #fff700,
+                0 0 24px #ff00cc,
+                0 0 32px #00ffea,
+                0 0 48px #e30a17;
+            animation: title-rainbow-shadow 2.5s linear infinite alternate;
+        }
+
+        @keyframes title-rainbow-shadow {
+            0% {
+                text-shadow: 0 0 12px #fff700, 0 0 24px #ff00cc;
+            }
+
+            100% {
+                text-shadow: 0 0 32px #00ffea, 0 0 48px #e30a17;
+            }
+        }
+
         /* UH Modal RGB, pattogó, forgó, rikító stílus */
         .uh-modal-content {
             animation: uh-pop 0.6s cubic-bezier(.68, -0.55, .27, 1.55) infinite alternate, uh-spin 2s linear infinite;
@@ -910,10 +979,7 @@
                 display: none !important;
             }
         }
-    </style>
 
-    <!-- A többi stílus és script változatlanul marad, hogy minden funkció működjön! -->
-    <style>
         /* Könyv kártyák - smooth hover */
         .book-hover:hover,
         .book-hover:focus-within {
@@ -1571,6 +1637,7 @@
 
         #imádók .mb-5 h1 {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+
             font-size: 3.2rem;
             letter-spacing: 2px;
             font-weight: 900;
@@ -1663,7 +1730,7 @@
             border: 6px solid #fff700;
             box-shadow: 0 0 32px #ff00cc, 0 0 48px #fff700;
             margin-bottom: 1.2rem;
-            animation: imadok-img-glow 1.5s infinite alternate;
+            animation: imadok-img-glow 1.5s infinite alternate, imadok-img-spin-crazy 2.2s cubic-bezier(.68,-0.55,.27,1.55) infinite;
             background: #fff;
         }
 
@@ -1675,6 +1742,20 @@
             100% {
                 box-shadow: 0 0 64px #fff700, 0 0 96px #ff00cc;
             }
+        }
+
+        @keyframes imadok-img-spin-crazy {
+            0%   { transform: rotate(0deg) scale(1);}
+            10%  { transform: rotate(45deg) scale(1.12);}
+            20%  { transform: rotate(-60deg) scale(1.18);}
+            30%  { transform: rotate(120deg) scale(1.22);}
+            40%  { transform: rotate(-180deg) scale(1.15);}
+            50%  { transform: rotate(180deg) scale(1.25);}
+            60%  { transform: rotate(-120deg) scale(1.18);}
+            70%  { transform: rotate(60deg) scale(1.22);}
+            80%  { transform: rotate(-45deg) scale(1.12);}
+            90%  { transform: rotate(0deg) scale(1);}
+            100% { transform: rotate(0deg) scale(1);}
         }
 
         #imádók h5 {
@@ -1836,7 +1917,85 @@
         }
     </style>
 
-    <!-- A többi stílus és script változatlanul marad, hogy minden funkció működjön! -->
+    <!-- Elvetemült fényvillanás a tetején -->
+    <div id="flashBar"
+        style="position:fixed;top:0;left:0;width:100vw;height:8px;z-index:9999;pointer-events:none;opacity:0;transition:opacity 0.3s;">
+    </div>
+    <script>
+        (function () {
+            function randomFlash() {
+                const bar = document.getElementById('flashBar');
+                bar.style.background = "linear-gradient(90deg, #fff700, #ff00cc, #00ffea, #fff700)";
+                bar.style.opacity = (Math.random() * 0.7 + 0.3).toString();
+                setTimeout(() => { bar.style.opacity = 0; }, 300 + Math.random() * 400);
+                setTimeout(randomFlash, 1500 + Math.random() * 2000);
+            }
+            randomFlash();
+        })();
+    </script>
+
+    <!-- Elvetemült fénykör az egérmutató alatt -->
+    <div id="crazyCursor"
+        style="position:fixed;pointer-events:none;z-index:9999;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,#fff70088 0%,#ff00cc44 80%,transparent 100%);mix-blend-mode:screen;opacity:0.7;transition:background 0.2s;">
+    </div>
+    <script>
+        (function () {
+            const crazyCursor = document.getElementById('crazyCursor');
+            document.addEventListener('mousemove', e => {
+                crazyCursor.style.left = (e.clientX - 60) + 'px';
+                crazyCursor.style.top = (e.clientY - 60) + 'px';
+                const colors = [
+                    'radial-gradient(circle,#fff700cc 0%,#ff00cc99 60%,transparent 100%)',
+                    'radial-gradient(circle,#00ffea99 0%,#fff70066 80%,transparent 100%)',
+                    'radial-gradient(circle,#e30a17aa 0%,#00ffea66 80%,transparent 100%)'
+                ];
+                crazyCursor.style.width = "120px";
+                crazyCursor.style.height = "120px";
+                crazyCursor.style.background = colors[Math.floor(Math.random() * colors.length)];
+            });
+        })();
+    </script>
+
+    <!-- Imádók képek: komplex animáció (forgat, nagyít, megáll, visszazsugorodik, visszaforog, szünet) -->
+    <script>
+        (function () {
+            function animateReviewerImgs() {
+                document.querySelectorAll('#imádók .reviewer-img').forEach(function (img) {
+                    // 1. Forgás + nagyítás 5s
+                    let angle = Math.random() * 360;
+                    let scale = 1.15 + Math.random() * 0.1;
+                    img.style.transition = "transform 5s cubic-bezier(.68,-0.55,.27,1.55)";
+                    img.style.transform = `rotate(${angle}deg) scale(${scale})`;
+
+                    // 2. Megáll 2s (nem változtatunk semmit)
+                    setTimeout(function () {
+                        // 3. Visszazsugorodik és visszaforog 5s alatt
+                        img.style.transition = "transform 5s cubic-bezier(.68,-0.55,.27,1.55)";
+                        img.style.transform = "rotate(0deg) scale(1)";
+                    }, 7000);
+
+                    // 4. 15s szünet (összesen 5+2+5+15=27s ciklus)
+                });
+                setTimeout(animateReviewerImgs, 7000);
+            }
+            animateReviewerImgs();
+        })();
+    </script>
+
+    <!-- Elvetemült gomb shake minden gombon inline style-lal -->
+    <script>
+        (function () {
+            function shakeButtons() {
+                document.querySelectorAll('button, .btn, .modern-btn-buy, .uh-modal-btn, .holy-csongor-btn').forEach(function (btn) {
+                    let deg = (Math.random() > 0.5 ? 1 : -1) * (2 + Math.random() * 2);
+                    btn.style.transform = `translateX(${deg}px) rotate(${deg}deg)`;
+                    btn.style.transition = "transform 0.18s";
+                });
+                setTimeout(shakeButtons, 180);
+            }
+            shakeButtons();
+        })();
+    </script>
     <footer class="bg-dark text-white text-center py-5 mt-5 shadow-lg footer-gradient" id="footer">
         <div class="container">
             <div class="row align-items-center g-4">
@@ -2017,6 +2176,7 @@
         const uhBtn = document.getElementById('uhCloseBtn');
         const uhModal = document.getElementById('uhModal');
         let uhModalInstance = null;
+        let lastJumpTime = 0; // <-- ÚJ: utolsó ugrás időbélyeg
 
         // Pattogó gomb mozgás
         function randomPosition() {
@@ -2046,14 +2206,19 @@
             uhJumpCount = 0;
             resetBtnPosition();
             uhBtn.disabled = false;
+            lastJumpTime = 0;
         });
 
         uhBtn.addEventListener('mouseenter', function (e) {
+            const now = Date.now();
             if (uhJumpCount < uhJumpMax) {
-                randomPosition();
-                uhJumpCount++;
-                uhBtn.disabled = true;
-                setTimeout(() => { uhBtn.disabled = false; }, 200);
+                if (now - lastJumpTime > 1000) { // csak 1 másodpercenként ugrik
+                    randomPosition();
+                    uhJumpCount++;
+                    uhBtn.disabled = true;
+                    lastJumpTime = now;
+                    setTimeout(() => { uhBtn.disabled = false; }, 200);
+                }
             } else {
                 // Visszaállítjuk a gombot, és engedélyezzük a bezárást
                 resetBtnPosition();
@@ -2074,6 +2239,23 @@
                 uhModalInstance.hide();
             }
         });
+    </script>
+    <script>
+        (function () {
+            let bg = document.body;
+            let t = 0;
+            function animateBg() {
+                t += 0.03;
+                bg.style.background = `linear-gradient(120deg, 
+            hsl(${(t * 40) % 360},100%,55%) 0%, 
+            hsl(${(t * 60 + 120) % 360},100%,60%) 50%, 
+            hsl(${(t * 80 + 240) % 360},100%,55%) 100%)`;
+                bg.style.backgroundSize = "200% 200%";
+                bg.style.transition = "background 0.5s";
+                requestAnimationFrame(animateBg);
+            }
+            animateBg();
+        })();
     </script>
 </body>
 
