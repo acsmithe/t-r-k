@@ -1941,17 +1941,36 @@
     <script>
         (function () {
             const crazyCursor = document.getElementById('crazyCursor');
-            document.addEventListener('mousemove', e => {
-                crazyCursor.style.left = (e.clientX - 60) + 'px';
-                crazyCursor.style.top = (e.clientY - 60) + 'px';
-                const colors = [
-                    'radial-gradient(circle,#fff700cc 0%,#ff00cc99 60%,transparent 100%)',
-                    'radial-gradient(circle,#00ffea99 0%,#fff70066 80%,transparent 100%)',
-                    'radial-gradient(circle,#e30a17aa 0%,#00ffea66 80%,transparent 100%)'
-                ];
-                crazyCursor.style.width = "120px";
-                crazyCursor.style.height = "120px";
-                crazyCursor.style.background = colors[Math.floor(Math.random() * colors.length)];
+            function isTouchDevice() {
+                return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+            }
+            function showCursor(show) {
+                crazyCursor.style.display = show ? 'block' : 'none';
+            }
+            if (isTouchDevice() || window.innerWidth < 900) {
+                showCursor(false);
+            } else {
+                showCursor(true);
+                document.addEventListener('mousemove', e => {
+                    crazyCursor.style.left = (e.clientX - 60) + 'px';
+                    crazyCursor.style.top = (e.clientY - 60) + 'px';
+                    const colors = [
+                        'radial-gradient(circle,#fff700cc 0%,#ff00cc99 60%,transparent 100%)',
+                        'radial-gradient(circle,#00ffea99 0%,#fff70066 80%,transparent 100%)',
+                        'radial-gradient(circle,#e30a17aa 0%,#00ffea66 80%,transparent 100%)'
+                    ];
+                    crazyCursor.style.width = "120px";
+                    crazyCursor.style.height = "120px";
+                    crazyCursor.style.background = colors[Math.floor(Math.random() * colors.length)];
+                });
+            }
+            // Ha átméretezik az ablakot, frissítsük a láthatóságot
+            window.addEventListener('resize', function () {
+                if (isTouchDevice() || window.innerWidth < 900) {
+                    showCursor(false);
+                } else {
+                    showCursor(true);
+                }
             });
         })();
     </script>
